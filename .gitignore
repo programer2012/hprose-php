@@ -3,3 +3,9 @@ vendor
 composer.phar
 composer.lock
 /netbeans
+/nbproject
+/examples/nbproject
+.idea/
+*.DS_Store
+.vscode
+tests/.phpunit.result.cache

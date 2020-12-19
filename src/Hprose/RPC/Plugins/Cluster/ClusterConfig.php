@@ -5,21 +5,22 @@
 |                                                          |
 | Official WebSite: https://hprose.com                     |
 |                                                          |
-|  Hprose.php                                              |
+| ClusterConfig.php                                        |
 |                                                          |
 | LastModified: Apr 1, 2020                                |
-|  Author: Ma Bingyao <andot@hprose.com>                   |
+| Author: Ma Bingyao <andot@hprose.com>                    |
 |                                                          |
 \*________________________________________________________*/
 
-// Autoload for non-composer applications
-spl_autoload_register(function ($className) {
-    if ((strlen($className) > 7) && (strtolower(substr($className, 0, 7)) === "hprose\\")) {
-        $file = __DIR__ . DIRECTORY_SEPARATOR . str_replace("\\", DIRECTORY_SEPARATOR, $className) . ".php";
-        if (is_file($file)) {
-            include $file;
-            return true;
-        }
-    }
-    return false;
-});
+namespace Hprose\RPC\Plugins\Cluster;
+
+class ClusterConfig {
+    public $retry = 10;
+    public $idempotent = false;
+    // function onSuccess(Context context): void
+    public $onSuccess;
+    // function onFailure(Context context): void
+    public $onFailure;
+    // function onRetry(Context context): int
+    public $onRetry;
+}

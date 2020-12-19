@@ -1,0 +1,15 @@
+{
+    "name": "hprose/examples",
+    "description": "examples of hprose",
+    "authors": [
+        {
+            "name": "andot",
+            "email": "mabingyao@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "ext-hprose": ">=1.8.0",
+        "hprose/hprose": "dev-master"
+    }
+}

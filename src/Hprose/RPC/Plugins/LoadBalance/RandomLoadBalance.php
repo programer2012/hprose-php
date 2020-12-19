@@ -5,21 +5,22 @@
 |                                                          |
 | Official WebSite: https://hprose.com                     |
 |                                                          |
-|  Hprose.php                                              |
+| RandomLoadBalance.php                                    |
 |                                                          |
 | LastModified: Apr 1, 2020                                |
-|  Author: Ma Bingyao <andot@hprose.com>                   |
+| Author: Ma Bingyao <andot@hprose.com>                    |
 |                                                          |
 \*________________________________________________________*/
 
-// Autoload for non-composer applications
-spl_autoload_register(function ($className) {
-    if ((strlen($className) > 7) && (strtolower(substr($className, 0, 7)) === "hprose\\")) {
-        $file = __DIR__ . DIRECTORY_SEPARATOR . str_replace("\\", DIRECTORY_SEPARATOR, $className) . ".php";
-        if (is_file($file)) {
-            include $file;
-            return true;
-        }
+namespace Hprose\RPC\Plugins\LoadBalance;
+
+use Hprose\RPC\Core\Context;
+
+class RandomLoadBalance {
+    public function handler(string $request, Context $context, callable $next): string {
+        $uris = $context->client->getUris();
+        $n = count($uris);
+        $context->uri = $uris[random_int(0, $n - 1)];
+        return $next($request, $context);
     }
-    return false;
-});
+}

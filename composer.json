@@ -45,9 +45,16 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=7.1.0",
+        "ext-hprose": ">=1.8.0"
+    },
+    "suggest": {},
+    "require-dev": {
+        "phpunit/phpunit": ">=6.0.0"
     },
     "autoload": {
-        "files": ["src/Hprose.php"]
+        "psr-4": {
+            "Hprose\\": "src/Hprose"
+        }
     }
 }
